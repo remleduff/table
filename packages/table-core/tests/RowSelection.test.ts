@@ -28,7 +28,7 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: true,
-        onStateChange() {},
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         getSubRows: row => row.subRows,
@@ -57,7 +57,7 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: true,
-        onStateChange() {},
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         getSubRows: row => row.subRows,
@@ -86,7 +86,7 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: true,
-        onStateChange() {},
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         getSubRows: row => row.subRows,
@@ -154,7 +154,7 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: true,
-        onStateChange() {},
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         state: {},
@@ -179,7 +179,35 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: true,
-        onStateChange() {},
+        onStateChange() { },
+        renderFallbackValue: '',
+        data,
+        getSubRows: row => row.subRows,
+        state: {
+          rowSelection: {},
+        },
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+      })
+
+      const firstRow = table.getCoreRowModel().rows[0]
+
+      const result = RowSelection.isSubRowSelected(
+        firstRow,
+        table.getState().rowSelection,
+        table
+      )
+
+      expect(result).toEqual(false)
+    })
+
+    it('should return false if no sub-rows are selectable', () => {
+      const data = makeData(3, 2)
+      const columns = generateColumns(data)
+
+      const table = createTable<Person>({
+        enableRowSelection: false,
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         getSubRows: row => row.subRows,
@@ -207,7 +235,7 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: true,
-        onStateChange() {},
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         getSubRows: row => row.subRows,
@@ -237,7 +265,7 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: true,
-        onStateChange() {},
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         getSubRows: row => row.subRows,
@@ -267,7 +295,7 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: row => row.index === 0, // only first row is selectable (of 2 sub-rows)
-        onStateChange() {},
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         getSubRows: row => row.subRows,
@@ -296,7 +324,7 @@ describe('RowSelection', () => {
 
       const table = createTable<Person>({
         enableRowSelection: true,
-        onStateChange() {},
+        onStateChange() { },
         renderFallbackValue: '',
         data,
         getSubRows: row => row.subRows,
